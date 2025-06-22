@@ -25,7 +25,6 @@
       color: #f1f1f1;
     }
 
-    /* Texture Overlay */
     .texture-overlay {
       position: fixed;
       top: 0;
@@ -40,7 +39,6 @@
       opacity: 0.03;
     }
 
-    /* Hero Header with Background Image */
     .hero-header {
       height: 50vh;
       background-size: cover;
@@ -49,17 +47,14 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      z-index: 2;
       overflow: hidden;
-      transition: transform 0.3s ease-out;
     }
 
-    /* Logo Animation */
     .hero-logo {
       max-height: 150px;
       opacity: 0;
-      transform: scale(0.8);
-      transition: all 1s ease;
+      transform: scale(0.9);
+      transition: all 0.3s ease-out;
     }
 
     .hero-logo.loaded {
@@ -67,7 +62,6 @@
       transform: scale(1);
     }
 
-    /* Sticky Header */
     .sticky-header {
       position: fixed;
       top: 0;
@@ -88,11 +82,6 @@
       opacity: 1;
     }
 
-    .sticky-header img {
-      max-height: 40px;
-    }
-
-    /* Profile Section */
     .profile {
       text-align: center;
       padding: 50px 20px 20px;
@@ -165,7 +154,6 @@
       color: #fff;
     }
 
-    /* Scrollable Content Sections */
     .scroll-content {
       padding: 20px;
       z-index: 2;
@@ -207,7 +195,6 @@
       color: #ccc;
     }
 
-    /* Contact Info List */
     .contact-info-list {
       list-style: none;
       text-align: left;
@@ -227,7 +214,6 @@
       font-size: 18px;
     }
 
-    /* Map Section */
     .map-section {
       height: 300px;
       overflow: hidden;
@@ -249,7 +235,6 @@
       color: #ddd;
     }
 
-    /* Social Links */
     .social-icons {
       display: flex;
       justify-content: center;
@@ -277,7 +262,6 @@
       transform: scale(1.1);
     }
 
-    /* Footer */
     .footer {
       text-align: center;
       padding: 20px 10px;
@@ -386,13 +370,13 @@
   </footer>
 
   <script>
-    // Shared logo for all clients
+    // Shared logo URL
     const LOGO_URL = "your-logo.png";
 
-    // Client Data with unique backgrounds and info
+    // Client Data
     const CLIENT_DATA = {
       "client1": {
-        name: "Rico Yigzaw",
+        name: "John Doe",
         title: "Graphic Designer",
         phone: "+1 234 567 8901",
         email: "john@example.com",
@@ -410,13 +394,13 @@
         photo: "photos/client1.jpg"
       },
       "client2": {
-        name: "Emmanuel Kassahun",
-        title: "Owner",
-        phone: "+251925634950",
-        email: "emmanuelkassahun2@example.com",
-        address: "Addis Abebea,ETHIOPIA",
-        mapEmbed: "https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d31523.217456924565!2d38.8232188!3d9.027027!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2set!4v1750167589513!5m2!1sen!2set",
-        services: ["Owner of Tilay Cards", "Graphics Designer", "SEO Strategy"],
+        name: "Jane Smith",
+        title: "Marketing Strategist",
+        phone: "+1 987 654 3210",
+        email: "jane@example.com",
+        address: "456 Strategy Ave, LA",
+        mapEmbed: "https://maps.google.com/maps?q=Strategy+Ave,+LA&t=&z=13&ie=UTF8&iwloc=&output=embed",
+        services: ["Digital Marketing", "Social Media", "SEO Strategy"],
         social: {
           instagram: "https://instagram.com/janesmithmarketing",
           telegram: "",
@@ -426,43 +410,7 @@
         },
         backgroundImage: "photos/client2-bg.jpg",
         photo: "photos/client2.jpg"
-      },
-  "client3": {
-  name: "Alex Rivera",
-  title: "Web Developer",
-  phone: "+1 555 666 7777",
-  email: "alex@example.com",
-  address: "789 Code Street, San Francisco",
-  mapEmbed: "https://maps.google.com/maps?q=Code+Street,+San+Francisco&t=&z=13&ie=UTF8&iwloc=&output=embed",
-  services: ["Frontend Development", "WordPress", "SEO"],
-  social: {
-    instagram: "",
-    telegram: "",
-    facebook: "",
-    tiktok: "",
-    website: "https://alexwebdev.com"
-  },
-  backgroundImage: "photos/client3-bg.jpg",
-  photo: "photos/client3.jpg"
-},
-"client4": {
-  name: "Mia Johnson",
-  title: "Interior Designer",
-  phone: "+1 555 777 8888",
-  email: "mia@example.com",
-  address: "890 Interior Design Blvd, Chicago",
-  mapEmbed: "https://maps.google.com/maps?q=Interior+Design+Blvd,+Chicago&t=&z=13&ie=UTF8&iwloc=&output=embed",
-  services: ["Home Staging", "Kitchen Design", "Space Planning"],
-  social: {
-    instagram: "https://instagram.com/miadesigns",
-    telegram: "",
-    facebook: "",
-    tiktok: "",
-    website: "https://miainteriors.com"
-  },
-  backgroundImage: "photos/client4-bg.jpg",
-  photo: "photos/client4.jpg"
-}
+      }
     };
 
     function getClientId() {
@@ -471,7 +419,7 @@
     }
 
     function loadData(client) {
-      // Update background image of hero header
+      // Update background image
       document.getElementById("heroHeader").style.backgroundImage = 
         `url('${client.backgroundImage}'), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))`;
 
@@ -513,6 +461,37 @@
       document.getElementById("website").href = client.social.website || "#";
     }
 
+    // Load client data
+    const clientId = getClientId();
+    const client = CLIENT_DATA[clientId] || CLIENT_DATA.client1;
+
+    loadData(client);
+
+    // Animate logo on load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('heroLogo').classList.add('loaded');
+      }, 100);
+    });
+
+    // Scroll Animation
+    const stickyHeader = document.getElementById('stickyHeader');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || window.pageYOffset;
+
+      if (scrollTop > 0) {
+        const opacity = Math.max(1 - scrollTop / 200, 0);
+        document.getElementById('heroLogo').style.opacity = opacity;
+      }
+
+      if (scrollTop > 100) {
+        stickyHeader.classList.add('show');
+      } else {
+        stickyHeader.classList.remove('show');
+      }
+    });
+
     // Generate vCard
     function generateVCF(client) {
       const vCard = `BEGIN:VCARD
@@ -536,39 +515,6 @@ END:VCARD`;
       URL.revokeObjectURL(url);
     }
 
-    // Load client data
-    const clientId = getClientId();
-    const client = CLIENT_DATA[clientId] || CLIENT_DATA.client1;
-
-    // Apply data to page
-    loadData(client);
-
-    // Animate logo on load
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('heroLogo').classList.add('loaded');
-      }, 300);
-    });
-
-    // Scroll Animation
-    const stickyHeader = document.getElementById('stickyHeader');
-
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY || window.pageYOffset;
-
-      if (scrollTop > 0) {
-        const opacity = Math.max(1 - scrollTop / 200, 0);
-        document.getElementById('heroLogo').style.opacity = opacity;
-      }
-
-      if (scrollTop > 100) {
-        stickyHeader.classList.add('show');
-      } else {
-        stickyHeader.classList.remove('show');
-      }
-    });
-
-    // Save contact
     document.getElementById("saveContactBtn").addEventListener("click", function(e) {
       e.preventDefault();
       generateVCF(client);
